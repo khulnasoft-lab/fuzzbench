@@ -200,7 +200,7 @@ def fuzz(input_corpus, output_corpus, target_binary):
 
     for mutant in mutants[:num_mutants]:
         os.system(f"cp -r {input_corpus_dir}/* {input_corpus}/*")
-        os.system(f"rm -rf {input_corpus_dir}/*")
+        subprocess.run(f"rm -rf {input_corpus_dir}/*", shell=False, check=True, text=True)
         with utils.restore_directory(input_corpus), utils.restore_directory(
                 output_corpus):
             try:
