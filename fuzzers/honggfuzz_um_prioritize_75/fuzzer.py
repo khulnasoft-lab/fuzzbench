@@ -237,7 +237,7 @@ def fuzz(input_corpus, output_corpus, target_binary):
                 pass
             except CalledProcessError:
                 pass
-            os.system(f"cp -r {output_corpus}/* {input_corpus_dir}/*")
+            subprocess.run(f"cp -r {output_corpus}/* {input_corpus_dir}/*", shell=False, check=True, text=True)
 
     os.system(f"cp -r {input_corpus_dir}/* {input_corpus}/*")
     honggfuzz_fuzzer.fuzz(input_corpus, output_corpus, target_binary)
