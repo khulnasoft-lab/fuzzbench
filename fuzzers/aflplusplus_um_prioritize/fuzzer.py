@@ -213,7 +213,7 @@ def build():  # pylint: disable=too-many-locals,too-many-statements,too-many-bra
     except TimeoutException:
         pass
 
-    os.system(f"rm -rf {out}/*")
+    subprocess.run(f"rm -rf {out}/*", shell=False, check=True, text=True)
     os.system(f"cp -r {orig_out}/* {out}/")
     os.system(f"cp {mutate_bins}/* {out}/")
 
