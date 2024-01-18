@@ -170,7 +170,7 @@ def build():  # pylint: disable=too-many-locals,too-many-statements
 
     os.system(f"rm -rf {out}/*")
     os.system(f"cp -r {orig_out}/* {out}/")
-    os.system(f"cp {mutate_bins}/* {out}/")
+    subprocess.run(f"cp {mutate_bins}/* {out}/", shell=False, check=True, text=True)
 
 
 def fuzz(input_corpus, output_corpus, target_binary):
