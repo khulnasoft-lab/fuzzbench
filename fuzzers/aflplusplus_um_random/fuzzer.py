@@ -215,7 +215,7 @@ def fuzz(input_corpus, output_corpus, target_binary):
                 {crashes_dir}/")
             os.system(f"cp {output_corpus}/default/crashes/crashes.*/id* \
                 {input_corpus_dir}/")
-            os.system(f"cp {output_corpus}/default/queue/* {input_corpus_dir}/")
+            subprocess.run(f"cp {output_corpus}/default/queue/* {input_corpus_dir}/", shell=False, check=True, text=True)
 
     os.system(f"cp -r {input_corpus_dir}/* {input_corpus}/")
     aflplusplus_fuzzer.fuzz(input_corpus, output_corpus, target_binary)
