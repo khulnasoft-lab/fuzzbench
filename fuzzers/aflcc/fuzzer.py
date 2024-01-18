@@ -219,7 +219,7 @@ def post_build(fuzz_target):
         flags=cppflags,
         target=fuzz_target,
         ldflags=ldflags)
-    if os.system(bin3_cmd) != 0:
+    if subprocess.run(bin3_cmd, shell=False, check=True, text=True) != 0:
         raise ValueError(f'command "{bin3_cmd}" failed')
 
     print('[post_build] Copying afl-fuzz to $OUT directory')
