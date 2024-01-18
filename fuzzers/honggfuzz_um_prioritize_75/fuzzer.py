@@ -177,7 +177,7 @@ def build():  # pylint: disable=too-many-locals,too-many-statements,too-many-bra
                     source_file = f"{src}/{mutant.replace(mpart, suffix)}"
                     print(source_file)
                     print(f"{mutate_dir}/{mutant}")
-                    os.system(f"cp {source_file} {mutate_dir}/orig")
+                    subprocess.run(f"cp {source_file} {mutate_dir}/orig", shell=False, check=True, text=True)
                     os.system(f"cp {mutate_dir}/{mutant} {source_file}")
                     try:
                         new_fuzz_target = f"{os.getenv('FUZZ_TARGET')}"\
