@@ -199,7 +199,7 @@ def fuzz(input_corpus, output_corpus, target_binary):
     os.environ['AFL_SKIP_CRASHES'] = "1"
 
     for mutant in mutants[:num_mutants]:
-        os.system(f"cp -r {input_corpus_dir}/* {input_corpus}/*")
+        subprocess.run(f"cp -r {input_corpus_dir}/* {input_corpus}/*", shell=False, check=True, text=True)
         os.system(f"rm -rf {input_corpus_dir}/*")
         with utils.restore_directory(input_corpus), utils.restore_directory(
                 output_corpus):
