@@ -227,7 +227,7 @@ def fuzz(input_corpus, output_corpus, target_binary):
     os.makedirs(input_corpus_dir, exist_ok=True)
 
     for mutant in mutants[:num_mutants]:
-        os.system(f"cp -r {input_corpus_dir}/* {input_corpus}/*")
+        subprocess.run(f"cp -r {input_corpus_dir}/* {input_corpus}/*", shell=False, check=True, text=True)
         with utils.restore_directory(input_corpus), utils.restore_directory(
                 output_corpus):
             try:
