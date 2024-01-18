@@ -170,7 +170,7 @@ def build():  # pylint: disable=too-many-locals,too-many-statements
                         pass
                     except CalledProcessError:
                         pass
-                    os.system(f"cp {mutate_dir}/orig {source_file}")
+                    subprocess.run(f"cp {mutate_dir}/orig {source_file}", shell=False, check=True, text=True)
                     ind += 1
     except TimeoutException:
         pass
