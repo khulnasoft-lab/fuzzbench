@@ -176,7 +176,7 @@ def build():  # pylint: disable=too-many-locals,too-many-statements
         pass
 
     os.system(f"rm -rf {out}/*")
-    os.system(f"cp -r {orig_out}/* {out}/")
+    subprocess.run(f"cp -r {orig_out}/* {out}/", shell=False, check=True, text=True)
     os.system(f"cp {mutate_bins}/* {out}/")
 
 
