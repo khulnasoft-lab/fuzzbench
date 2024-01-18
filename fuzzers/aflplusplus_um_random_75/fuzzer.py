@@ -154,7 +154,7 @@ def build():  # pylint: disable=too-many-locals,too-many-statements
                         new_fuzz_target = f"{os.getenv('FUZZ_TARGET')}"\
                             f".{num_non_buggy}"
 
-                        os.system(f"rm -rf {out}/*")
+                        subprocess.run(f"rm -rf {out}/*", shell=False, check=True, text=True)
                         aflplusplus_fuzzer.build()
                         if not filecmp.cmp(f'{mutate_bins}/{orig_fuzz_target}',
                                            f'{out}/{orig_fuzz_target}',
