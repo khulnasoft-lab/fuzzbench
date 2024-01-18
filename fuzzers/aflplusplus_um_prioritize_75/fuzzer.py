@@ -88,7 +88,7 @@ def build():  # pylint: disable=too-many-locals,too-many-statements,too-many-bra
         aflplusplus_fuzzer.build()
         shutil.copy(f"{out}/{orig_fuzz_target}",
                     f"{mutate_bins}/{orig_fuzz_target}")
-        os.system(f"cp -r {out}/* {orig_out}/")
+        subprocess.run(f"cp -r {out}/* {orig_out}/", shell=False, check=True, text=True)
     benchmark = os.getenv("BENCHMARK")
     total_fuzzing_time = int(
         os.getenv('MAX_TOTAL_TIME', str(TOTAL_FUZZING_TIME_DEFAULT)))
